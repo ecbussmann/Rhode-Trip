@@ -2,21 +2,6 @@
 
 **Team Members:** Sara (ssyed7), Abby (adicther), Erika (ebussman), Pradyut (psekhsar)
 
-**Team Strengths and Weaknesses:**
-<br />Sara:
-<br />Strengths:(Likes to make things look pretty, Communication, Planning)
-<br />  Weaknesses: (Doesn’t like to work in a consistent schedule (doesn’t like do a little bit at a time), Not great at github, Not good at estimating how long something will take, Not a big javascript fan )
-<br />Abby:
- <br /> Strengths: (Will crunch to get it done, can work efficiently, Problem solving, Unique ideas)
- <br /> Weaknesses: (Only likes coding in the morning, doesn’t stay up late, Can have erratic working schedule sometimes, Gets frustrated with finicky syntax)
-<br />Erika:
- <br /> Strengths: (Backend logic/data structures, Refactoring, Debugging)
- <br /> Weaknesses: (Like to do work in bursts (trying to improve consistency), Front end/design, Edge cases/small details, Prioritizing work I don’t want to) do/unsure about
-<br />Pradyut:
-<br />  Strengths: (Algorithms, data structures, Planning, Testing, finding edge cases etc.)
-<br />  Weaknesses: (Cannot code in the morning, Javascript/html stuff, Github)
-
-
 **Project Concept**
 ### The Road Trip Planner
 Overview: The Road Trip planner would aim to solve the problem of planning a roadtrip that balances driving with sightseeing. A customizable planner would allow a user to choose where they would like to start and end their roadtrip, how much time they want to spend on the road, and what kind of attractions they want to see (natural scenery, national parks, restaurants, museums etc). The planner would generate a scenic and entertaining route specific to what each user is looking for in an ideal road trip.
@@ -50,19 +35,6 @@ multiple formats (eg. map form, list form with stops and details)**
 overview/directions
 <br /> -Semi-automating the process of visualization for the map (eg. icons for stops,
 categorization of stop types, etc.)
-
-**HTA Approval (crusch):** Accepted, just make sure you have a strong core algorithm as your main feature.
-
-**Mentor TA:** Ben Silverman, benjamin_silverman1@brown.edu
-
-## Meetings
-
-**4-Way Checkpoint:** _(Schedule for on or before April 5)_
-
-**Adversary Checkpoint:** _(Schedule for on or before April 12 once you are assigned an adversary TA)_
-
-## How to Build and Run
-_A necessary part of any README!_
 
 ## Google Maps API Specs
 
