@@ -9,20 +9,27 @@ import java.sql.Statement;
 /**
  * This class is responsible for creating a connection to the Yelp business sqlite3 database.
  */
-public class Database {
+public final class Database {
+
+  private Database() {
+
+  }
 
   private static Connection yelpConn;
+
 
   /**
    * Establishes a connection to the SQLite database at the given filename
    * and returns the Connection object.
    *
    * @param filename file name of SQLite3 database to open.
-   * @throws SQLException           if an error occurs in any SQL query.
+   * @return connection object
+   * @throws SQLException if an error occurs in any SQL query.
    * @throws ClassNotFoundException if getting the "org.sqlite.JDBC? class object
    *                                cannot be retrieved
    */
-  public static Connection connectToDatabase(String filename) throws SQLException, ClassNotFoundException {
+  public static Connection connectToDatabase(String filename)
+      throws SQLException, ClassNotFoundException {
     File tempFile = new File(filename);
     if (!tempFile.exists()) {
       throw new IllegalArgumentException("ERROR: No database could be found at the given filepath");
@@ -41,7 +48,7 @@ public class Database {
    */
   public static void setYelpDatabaseConnection() {
     try {
-      yelpConn = connectToDatabase("data/yelp_business_database.sqlite3");
+      yelpConn = connectToDatabase("data/yelp_business_database_w_attributes.sqlite3");
     } catch (SQLException | ClassNotFoundException e) {
       System.out.println("ERROR: Connection to Yelp Database could not be established");
     }

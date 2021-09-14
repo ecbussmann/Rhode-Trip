@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: edu.brown.cs.student.termProject.BoundingBoxTests
--------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.257 s - in edu.brown.cs.student.termProject.BoundingBoxTests
-=======
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s - in edu.brown.cs.student.termProject.BoundingBoxTests
->>>>>>> 23205e407de7b2d61b3a6e8cbec46adf59b1b2e8

@@ -36,9 +36,49 @@ overview/directions
 <br /> -Semi-automating the process of visualization for the map (eg. icons for stops,
 categorization of stop types, etc.)
 
-## Google Maps API Specs
+**HTA Approval (crusch):** Accepted, just make sure you have a strong core algorithm as your main feature.
+
+**Mentor TA:** Ben Silverman, benjamin_silverman1@brown.edu
+
+## How to Build and Run
+In the terminal, navigate to the root directory "term-project-adichter-ebussman-psekhsar-ssyed7" and
+run "mvn clean package". Next, run "./run -gui". From another terminal, navigate to the root directory,
+cd into "frontend", and run "npm start". If this doesn't happen automatically, open a browser
+(Chrome works well) and navigate to "https://localhost:3000". Finally, fill out the form
+on the web page and get your roadtrip!
+
+## Errors/Bugs
+While not an explicit error/bug, the user may achieve more/less satisfactory stops for their route
+based on the kinds of preferences they indicated and how well these preferences align with the data
+in the Yelp DB or the Yelp API. However, we have attempted to match these preferences as closely as
+possible.
+
+## Design decisions
+On the frontend, we decided to limit both the number of user inputs (to reduce the amount of work
+the user has to do) and the number of "free-text" inputs (eg. boxes where user can type anything).
+This significantly reduced the amount of input sanitizing we had to do, and also allows for a
+simpler, more precise user experience, because the user can begin typing a location and it will
+likely show up (biased towards their current location). 
+
+
+## Tests
+We divided our Unit tests into three classes: AttractionNodeTests, BoundingBoxTests and DijkstraTests.
+AttractionNodeTests consists of tests for the four different attraction classes, testing the different
+getter and setter methods as well as the value heuristic method for each class. BoundingBoxTests covers
+tests for functions involved in querying AttractionNodes from the Yelp Database within a BoundingBox
+between a start and end position. Edge cases tested for include bounding boxes with the same start and end 
+positions, querying for attractions of invalid categories, querying within an empty bounding box. Lastly, 
+DijkstraTests covers tests for our implementation of Dijkstra's algorithm, testing if paths
+include/exclude certain stops/categories of stops.
+
 
 ## Support sources utilized for Google Maps API implementation
 https://tintef.github.io/react-google-places-autocomplete/docs/
 https://developers.google.com/maps/documentation/places/web-service/details
 https://developers.google.com/maps/documentation/directions/start#api-key
+https://developers.google.com/maps/documentation/javascript/reference/places-service#PlaceDetailsRequest
+
+## Other sources utilized
+Animations: http://jsfiddle.net/MDzsR/1/
+Bootstrap: https://react-bootstrap.github.io/layout/grid/
+Flaticon: https://www.flaticon.com/

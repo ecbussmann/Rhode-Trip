@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #f5ffcf;
+  background-image: linear-gradient(#f5ffcf, #ffedcf, #ffddcf, #ffd3cf, #ffefe8, #fdcfff, #e5cfff, #cfddff);
 }
 
 .App-logo {
@@ -69,7 +70,8 @@
 }
 
 .question{
-  font-weight: bold
+  font-weight: bold;
+  display: inline
 }
 
 /*.container {
@@ -93,7 +95,8 @@
 }
 
 .description{
-  color: #FFFFF0
+  color: #FFFFF0;
+  font-size: 20px;
 }
 
 .pad {
@@ -112,7 +115,18 @@
   display: flex;
   justify-content:center;
   align-items: center;
-  padding: 20px;
+  padding: 12px;
+}
+
+.rectangle2 {
+  /*height: 25px;
+  width: 800px;*/
+  background-color: #C0C0C0;
+  border-radius: 20px;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  padding: 30px;
 }
 
 

@@ -6,7 +6,7 @@ import { Map, Marker } from "google-maps-react"
 import {useState, useEffect} from 'react'
 import { AwesomeButton } from "react-awesome-button";
 import TextBox from './TextBox.js';
-import "react-awesome-button/dist/themes/theme-eric.css";
+import "react-awesome-button/dist/themes/theme-bojack.css";
 import axios from 'axios';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,6 +21,10 @@ import finish from './finish.png'
 import road from './road.png'
 import park2 from './park2.png'
 import flags from './flags.png'
+import star from './star.png'
+import halfstar from './halfstar.png'
+import logo from './logo1.png'
+
 
 import {Container, Row, Col} from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -49,12 +53,11 @@ let costPreference = 1
 let steps = []
 let shortestRouteDist = ""
 let distanceMessage = ["", ""]
-let logo = "https://i.ibb.co/drqk6c8/logo.png";
+//let logo = "https://i.ibb.co/drqk6c8/logo.png";
 let restaurantLogo = "fork.png"
 let response_message = ""
 let trip_message = ""
 let route_message = ""
-let summary_text = ""
 let loading_message = ""
 let loading_class = ""
 let originCoords = []
@@ -80,7 +83,9 @@ let contactOrigin = ""
 let contactDest = ""
 let viewInGoogle = ""
 let destSet = 0
+let originSet = 0
 let intermedText = ""
+let rectangle2 = ""
 
 function App() {
 
@@ -152,6 +157,8 @@ function App() {
           originPlace = result
         }
       })
+
+      originSet = 1
 
       // update the time/distance display for shortest route,
       // but only if the destination has already been set
@@ -230,7 +237,10 @@ function App() {
 
       destSet = 1
 
-    getRouteInfo();
+    if (originSet == 1){
+      getRouteInfo();
+    }
+
   }
 
     // initializes the Google Map that will be displayed with the route
@@ -326,8 +336,10 @@ function App() {
     const requestTrip = () => {
       error_message = ""
       resetDisplay()
+      map = null
       setSubmitted(0)
 
+      console.log(costPreference)
       // do preliminary error-checking on front-end user inputs
       // no origin input
       if(origin == null){
@@ -430,6 +442,12 @@ function App() {
           setAttractions(newAttractions)
           for (let i = 1; i < newAttractions.length - 1; i++){
 
+              let current = newAttractions[i]
+              current.wholeStars = current.rating - (current.rating % 1.0)
+
+              current.halfStars = (current.rating % 1.0)*2
+
+
               let marker = new google.maps.Marker({
                 position: {lat: newAttractions[i].coordinates[0], lng:newAttractions[i].coordinates[1] },
                 map: map,
@@ -440,15 +458,17 @@ function App() {
           let infoWindow = null
           if (newAttractions[i].name == "Intermediate Stop") {
               infoWindow = new google.maps.InfoWindow({
-                  content: '<div> <h3>' + middle.value.structured_formatting.main_text + '</h3>' + middle.value.structured_formatting.secondary_text + '</div>'
+                  content: '<div> <h4>' + middle.value.structured_formatting.main_text + '</h4>' + middle.value.structured_formatting.secondary_text + '</div>'
                 })
 
           } else{
+            // display the name and location of a stop upon clicking its icon on the map
             infoWindow = new google.maps.InfoWindow({
-              content: '<div> <h3>' + newAttractions[i].name + '</h3>' + newAttractions[i].location[1] + ", " + newAttractions[i].location[2] + '</div>'
+              content: '<div> <h4>' + newAttractions[i].name + '</h4>' + newAttractions[i].location[1] + ", " + newAttractions[i].location[2] + '</div>'
             })
           }
 
+          // add a click handler to the marker
           marker.addListener('click', function(){
             infoWindow.open(map, marker)
           })
@@ -462,11 +482,6 @@ function App() {
             label: "A"
           })
 
-          console.log(originMarker)
-          console.log(originCoords)
-          console.log(destCoords)
-
-          // change name
           let infoWindowOrigin = new google.maps.InfoWindow({
             content: '<div> <h3>' + origin.value.structured_formatting.main_text + '</h3>' + origin.value.structured_formatting.secondary_text + '</div>'
           })
@@ -483,7 +498,7 @@ function App() {
             label: "B"
           })
 
-          // change name
+
           let infoWindowDest = new google.maps.InfoWindow({
             content: '<div> <h3>' + dest.value.structured_formatting.main_text + '</h3>' + dest.value.structured_formatting.secondary_text + '</div>'
           })
@@ -493,23 +508,34 @@ function App() {
           })
 
           console.log(response.data["route"])
+          //setDisplay()
+
           response_message = "Trip Itinerary"
           trip_message = "Trip Details"
           route_message = "Route Map"
           intermedText =  "(You added this stop!)"
+          rectangle2 = "rectangle2"
 
           setOriginText(origin.value.structured_formatting)
           setDestText(dest.value.structured_formatting)
-          setMiddleText(middle.value.structured_formatting)
+          if (middle != undefined){
+            setMiddleText(middle.value.structured_formatting)
+          }
 
+          // this is all information to display in the results
+          // further resources for trip planning
           tripResourceLink = "https://www.tripsavvy.com/planning-a-road-trip-complete-guide-4845956"
           resource_name = "Planning a Road Trip: The Complete Guide"
+
+
+          // further information about the origin location (included in "Trip Details")
           originName = originPlace.name
           originMapURL = originPlace.url
           originWebsite = originPlace.website
           originPhone = originPlace.formatted_phone_number
           originIcon = originPlace.icon
 
+          // further information about the destination location (included in "Trip Details")
           destName = destPlace.name
           destMapURL = destPlace.url
           destWebsite = destPlace.website
@@ -517,7 +543,7 @@ function App() {
           destIcon = destPlace.icon
           originMessage = "Origin"
           destMessage = "Destination"
-          driving_message = "(Click on the road icons for directions!)"
+          //driving_message = "(Click on the road icons for directions!)"
           if(destPhone === undefined){
             contactDest = "Contact: None Available"
           }
@@ -540,22 +566,7 @@ function App() {
     }
   }
 
-    function setDisplay(){
-      tripResourceLink = "https://www.tripsavvy.com/planning-a-road-trip-complete-guide-4845956"
-      originName = originPlace.name
-      originMapURL = originPlace.url
-      originWebsite = originPlace.website
-      originPhone = originPlace.formatted_phone_number
-      originIcon = originPlace.icon
-
-      destName = destPlace.name
-      destMapURL = destPlace.url
-      destWebsite = destPlace.website
-      destPhone = destPlace.formatted_phone_number
-      destIcon = destPlace.icon
-
-    }
-
+    // re-sets the information ot be displayed for the next trip
     function resetDisplay(){
       tripResourceLink = ""
       resource_name = ""
@@ -574,29 +585,36 @@ function App() {
       destMessage = ""
       contactDest = ""
       contactOrigin = ""
+      rectangle2 = ""
+      route_message = ""
+      trip_message = ""
+      viewInGoogle = ""
+
 
     }
 
 
+    // re-render page when user inputs new start location or end location
     useEffect(()=> {
       distanceMessage[0] = "The quickest route for this origin and destination is "
       distanceMessage[1] = "and"
     }, [shortestRouteTime])
 
+    // re-render page when user hits the submit button
     useEffect(()=> {
 
     }, [submitted])
+
 
     useEffect(()=> {
 
     }, [attractions])
 
     useEffect(()=> {
-      console.log("adding origin")
-      console.log(originText)
 
     }, [originText])
 
+    // re-render page when there's an error
     useEffect(()=> {
       setError(0)
     }, [error])
@@ -616,7 +634,7 @@ function App() {
 
     &nbsp;
 
-    <p class = "question">Where do you want to start?</p>
+    <h4>Where do you want to start?</h4>
     <GooglePlacesAutocomplete id = "origin" apiKey="AIzaSyAbX-U5h4aaNk2TTyrhYfFBG5a1C3zGU-c"
     selectProps={{
           origin,
@@ -625,9 +643,9 @@ function App() {
       style = {{width: '66%'}}/>
 
 
-
+    <br></br>
     &nbsp;
-    <p class = "question">Where do you want to go?</p>
+    <h4>Where do you want to go?</h4>
     <GooglePlacesAutocomplete id = "destination" apiKey="AIzaSyAbX-U5h4aaNk2TTyrhYfFBG5a1C3zGU-c"
     selectProps={{
           dest,
@@ -637,15 +655,16 @@ function App() {
       <br></br>
 
 
-      <p>{distanceMessage[0]} {shortestRouteDist} {distanceMessage[1]} {shortestRouteTime}</p>
+      <p>{distanceMessage[0]} <div class = "question" display = "inline">{shortestRouteDist}</div> {distanceMessage[1]} <div display = "inline" class = "question">{shortestRouteTime}</div></p>
 
 
-      Based on this, how much long would you like to spend on the road?
+      Based on this, how long would you like to spend on the road?
       &nbsp;
       <br></br>
       <TextBox label = {"Maximum distance (miles): "} change = {setDist} />
 
-
+      <br></br>
+      &nbsp;
       &nbsp;
       <p class = "question">What's your budget like?</p>
 
@@ -739,7 +758,7 @@ function App() {
 
 
         <br></br>
-        <AwesomeButton type = "secondary" onPress = {requestTrip} > Get my trip! </AwesomeButton>
+        <AwesomeButton type = "primary" onPress = {requestTrip} > Get my trip! </AwesomeButton>
         <div><br></br>
         <div> <h1 class = {loading_class}>{loading_message}</h1></div>
         <h2>{error_message}</h2>
@@ -751,7 +770,61 @@ function App() {
         </div>
 
         <Row>
+
         <Col>
+
+        <h1>{route_message}</h1>
+        <div class = {rectangle2}>
+        <div id="map" class = "rounded" style={{float: "center", width: 600, height: 400}}></div>
+        </div>
+        </Col>
+        <Col>
+
+        <h1>{trip_message}</h1>
+        <br></br>
+        <br></br>
+        <br></br>
+        <a href={tripResourceLink} target="_blank">{resource_name}</a>
+        <Row>
+        <Col>
+
+        <br></br>
+        <h3>{originMessage}</h3>
+        <img src = {originIcon} style={{width: '100px'}}/>
+        <p>
+        <a href={originWebsite} target="_blank">{originName}</a>
+        <br></br>
+        {contactOrigin}<a href={"tel:" + {originPhone}}>{originPhone}</a>
+        <br></br>
+        <a href={originMapURL} target="_blank">{viewInGoogle}</a>
+        </p>
+        </Col>
+
+        <Col>
+        <br></br>
+        <h3>{destMessage}</h3>
+        <img src = {destIcon} style={{width: '100px'}}/>
+        <p>
+        <a href={destWebsite} target="_blank">{destName}</a>
+        <br></br>
+        {contactDest}<a href={"tel:" + {destPhone}}>{destPhone}</a>
+        <br></br>
+        <a href={destMapURL} target="_blank">{viewInGoogle}</a>
+        </p>
+        </Col>
+        </Row>
+
+
+        </Col>
+
+        </Row>
+
+        <Row>
+        <Col></Col>
+
+        <Col sm = {6}>
+        <br></br>
+        <br></br>
         <h1>{response_message}</h1>
         &nbsp;
         {driving_message}
@@ -795,7 +868,8 @@ function App() {
             <br></br>
           <p class = "pad"><h2> {x.name}</h2>
           <p class = "description"> {x.location[1]}, {x.location[2]}
-          <br></br> {x.rating} stars
+          <br></br> {[...Array(x.wholeStars)].map((e, i) => <img src={star} style={{width: '15px'}}/>)}
+          {[...Array(x.halfStars)].map((e, i) => <img src={halfstar} style={{width: '15px'}}/>)}
           <br></br>
           <a href={"https://www.yelp.com/biz/" + x.id} target="_blank">Learn more</a></p></p>
         </div>
@@ -808,7 +882,8 @@ function App() {
             <br></br>
           <p class = "pad"><h2> {x.name}</h2>
           <p class = "description"> {x.location[1]}, {x.location[2]}
-          <br></br> {x.rating} stars
+          <br></br> {[...Array(x.wholeStars)].map((e, i) => <img src={star} style={{width: '15px'}}/>)}
+          {[...Array(x.halfStars)].map((e, i) => <img src={halfstar} style={{width: '15px'}}/>)}
           <br></br>
           <a href={"https://www.yelp.com/biz/" + x.id} target="_blank">Learn more</a></p></p>
         </div>
@@ -821,7 +896,8 @@ function App() {
             <br></br>
           <p class = "pad"><h2> {x.name}</h2>
           <p class = "description"> {x.location[1]}, {x.location[2]}
-          <br></br> {x.rating} stars
+          <br></br> {[...Array(x.wholeStars)].map((e, i) => <img src={star} style={{width: '15px'}}/>)}
+          {[...Array(x.halfStars)].map((e, i) => <img src={halfstar} style={{width: '15px'}}/>)}
           <br></br>
           <a href={"https://www.yelp.com/biz/" + x.id} target="_blank">Learn more</a></p></p>
         </div>
@@ -834,7 +910,8 @@ function App() {
             <br></br>
           <p class = "pad"><h2> {x.name}</h2>
           <div class = "description"> {x.location[1]}, {x.location[2]}
-          <br></br> {x.rating} stars
+          <br></br> {[...Array(x.wholeStars)].map((e, i) => <img src={star} style={{width: '15px'}}/>)}
+          {[...Array(x.halfStars)].map((e, i) => <img src={halfstar} style={{width: '15px'}}/>)}
           <br></br>
           <a href={"https://www.yelp.com/biz/" + x.id} target="_blank">Learn more</a></div></p>
         </div>
@@ -844,43 +921,13 @@ function App() {
         </div>)
           }})}
 
-
+        <br></br>
+        <br></br>
         </Col>
+        <Col></Col>
 
-        <Col>
-
-        <h1>{route_message}</h1>
-        <div id="map" class = "rounded" style={{float: "center", width: 600, height: 400}}></div>
-        <h1>{trip_message}</h1>
-        <p>
-        {summary_text}
-        <a href={tripResourceLink} target="_blank">{resource_name}</a>
-        <br></br>
-        <h3>{originMessage}</h3>
-        <img src = {originIcon} style={{width: '100px'}}/>
-        <p>
-        <a href={originWebsite} target="_blank">{originName}</a>
-        <br></br>
-        {contactOrigin}{originPhone}
-        <br></br>
-        <a href={originMapURL} target="_blank">{viewInGoogle}</a>
-        </p>
-
-
-        <h3>{destMessage}</h3>
-        <img src = {destIcon} style={{width: '100px'}}/>
-        <p>
-        <a href={destWebsite} target="_blank">{destName}</a>
-        <br></br>
-        {contactDest}{destPhone}
-        <br></br>
-        <a href={destMapURL} target="_blank">{viewInGoogle}</a>
-        </p>
-
-        </p>
-
-        </Col>
         </Row>
+
         </Container>
       </div>
 

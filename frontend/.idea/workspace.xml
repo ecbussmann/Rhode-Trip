@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="35fbc3c4-a0f2-42ea-925e-d06099237851" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../src/test/java/edu/brown/cs/student/termProject/BoundingBoxTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/test/java/edu/brown/cs/student/termProject/BoundingBoxTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/jacoco.exec" beforeDir="false" afterPath="$PROJECT_DIR$/../target/jacoco.exec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/surefire-reports/TEST-edu.brown.cs.student.termProject.AttractionNodesTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../target/surefire-reports/TEST-edu.brown.cs.student.termProject.AttractionNodesTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/surefire-reports/TEST-edu.brown.cs.student.termProject.BoundingBoxTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../target/surefire-reports/TEST-edu.brown.cs.student.termProject.BoundingBoxTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/surefire-reports/TEST-edu.brown.cs.student.termProject.DijkstraTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../target/surefire-reports/TEST-edu.brown.cs.student.termProject.DijkstraTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/surefire-reports/edu.brown.cs.student.termProject.AttractionNodesTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../target/surefire-reports/edu.brown.cs.student.termProject.AttractionNodesTests.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/surefire-reports/edu.brown.cs.student.termProject.BoundingBoxTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../target/surefire-reports/edu.brown.cs.student.termProject.BoundingBoxTests.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/surefire-reports/edu.brown.cs.student.termProject.DijkstraTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../target/surefire-reports/edu.brown.cs.student.termProject.DijkstraTests.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/termProject-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../target/termProject-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/test-classes/edu/brown/cs/student/termProject/BoundingBoxTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/../target/test-classes/edu/brown/cs/student/termProject/BoundingBoxTests.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1rKgG4CzPO5fAylkLt3LwvBefuj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.notifications" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="35fbc3c4-a0f2-42ea-925e-d06099237851" name="Default Changelist" comment="" />
+      <created>1618730095487</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618730095487</updated>
+      <workItem from="1618730097659" duration="44000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
