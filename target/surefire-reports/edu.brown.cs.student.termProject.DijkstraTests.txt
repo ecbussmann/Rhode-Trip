@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: edu.brown.cs.student.termProject.DijkstraTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.147 s <<< FAILURE! - in edu.brown.cs.student.termProject.DijkstraTests
+edu.brown.cs.student.termProject.DijkstraTests.testThis  Time elapsed: 0.04 s  <<< ERROR!
+java.lang.NullPointerException
+	at edu.brown.cs.student.termProject.DijkstraTests.testThis(DijkstraTests.java:17)
+

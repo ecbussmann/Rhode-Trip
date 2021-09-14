@@ -1,0 +1,65 @@
+input[type="number"] {
+  width: 3em;
+}
+
+body {
+  width: 100%;
+  background-image: url("stars.jpg");
+  background-size: 100%;
+}
+
+#title {
+  text-align: center;
+  color: white;
+  font-family: Papyrus, fantasy;
+  font-size: 35px;
+}
+
+#stars {
+  text-align: center;
+}
+
+.sub-head {
+  color: white;
+  font-family: Papyrus, fantasy;
+}
+
+textarea {
+  width: 50%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 2px;
+}
+
+#first {
+  background-color: #1ca0a0;
+  text-decoration: underline;
+  text-decoration-color: #f9f9fb;
+}
+
+#box {
+  background-color: black;
+  width: 400px;
+  padding: 15px;
+  opacity: 0.6;
+  align-content: left;
+  border-style: double;
+  border-color: white
+}
+
+.results {
+  color: white;
+  text-align: top;
+  position: absolute;
+  align-content: center;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  text-align: center;
+}
+
+.all_text {
+  text-shadow: 5px 5px #FF0000;
+}
